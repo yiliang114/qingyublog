@@ -1,6 +1,6 @@
 <template>
   <ul class="label-list">
-    <li @click="setActiveLabel(null)">
+    <li @click="setActiveLabelHandle(null)">
       <span class="tag"
         v-if="!activeLabel"
         style="background-color: #3593f2;">ALL</span>
@@ -9,7 +9,7 @@
     </li>
     <li v-for="label in labels"
       :key="label.id"
-      @click="setActiveLabel(label)">
+      @click="setActiveLabelHandle(label)">
       <span class="tag"
         v-if="activeLabel && activeLabel.name === label.name"
         :style="{ backgroundColor: '#' + label.color}">{{label.name}}</span>
@@ -24,19 +24,20 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   computed: {
-    ...mapGetters(["labels", "activeLabel"])
+    ...mapGetters("github", ["labels", "activeLabel"])
   },
   methods: {
-    ...mapActions(["setLabels", "updateActiveLabel"]),
-    setActiveLabel(label) {
+    ...mapActions("github", ["setActiveLabel"]),
+    setActiveLabelHandle(label) {
+      console.log("this.$route.name", this.$route.name);
       if (this.$route.name === "BlogDetail") {
-        this.updateActiveLabel(label);
+        this.setActiveLabel(label);
         this.$router.push("/");
       } else {
         if (this.activeLabel && label && this.activeLabel.name === label.name) {
-          this.updateActiveLabel(null);
+          this.setActiveLabel(null);
         } else {
-          this.updateActiveLabel(label);
+          this.setActiveLabel(label);
         }
       }
     }

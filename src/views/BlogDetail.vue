@@ -7,7 +7,7 @@
         <li class="tag tag-small"
           v-for="label in issue.labels"
           :key="label.id"
-          @click="setActiveLabel(label)"
+          @click="setActiveLabelHandle(label)"
           :style="{ backgroundColor: '#' + label.color}">{{label.name}}
         </li>
       </ul>
@@ -33,6 +33,7 @@
 import { mapActions } from "vuex";
 import Comment from "../components/Comment.vue";
 import AddComment from "../components/AddComment.vue";
+import { getComments, getIssue } from "@/services/modules/github";
 
 export default {
   data() {
@@ -43,30 +44,24 @@ export default {
       newComment: null
     };
   },
-  components: { Comment, AddComment },
+  components: {
+    Comment,
+    AddComment
+  },
   methods: {
-    ...mapActions(["updateActiveLabel"]),
-    setActiveLabel(label) {
-      this.updateActiveLabel(label);
-      this.$router.push("/");
-    },
+    ...mapActions("github", ["setActiveLabel"]),
     getComments() {
       if (this.issue && this.issue.comments > 0) {
-        this.$gitHubApi
-          .getComments(this, this.issue.comments_url)
-          .then(response => {
-            this.comments = response.data;
-          });
+        getComments(this.issue.comments_url).then(response => {
+          this.comments = response.data;
+        });
       }
     },
     getIssue() {
-      this.$gitHubApi.getIssue(this, this.number).then(response => {
-        this.issue = response.data;
+      getIssue(this.number).then(data => {
+        this.issue = data;
         this.getComments();
       });
-    },
-    back() {
-      this.$router.go(-1);
     },
     handleAddCommentSuccess(comment) {
       this.comments.push(comment);
@@ -78,9 +73,16 @@ export default {
             commentContainer.scrollHeight - commentContainer.clientHeight;
         }, 16);
       });
+    },
+    back() {
+      this.$router.go(-1);
+    },
+    setActiveLabelHandle(label) {
+      this.setActiveLabel(label);
+      this.$router.push("/");
     }
   },
-  created() {
+  mounted() {
     if (this.$route.params.issue) {
       this.issue = this.$route.params.issue;
     } else {
@@ -90,8 +92,6 @@ export default {
         this.$router.replace("/");
       }
     }
-  },
-  mounted() {
     this.$nextTick(() => {
       if (this.issue) {
         this.getComments();

@@ -12,7 +12,6 @@ Vue.prototype.$message = Message
 import BgaBackTop from 'bga-back-top-vue'
 Vue.use(BgaBackTop)
 
-import lodash from 'lodash'
 import moment from 'moment'
 import marked from 'marked'
 import highlight from 'highlight.js'
@@ -27,7 +26,6 @@ import './css/main.css'
 import { gitHubApi, isGetUserInfo, queryParse, queryStringify } from './utils'
 import { showMessage, successMessage, errorMessage, warningMessage, infoMessage } from './utils/toastUtil'
 
-Vue.prototype._ = lodash
 moment.locale('zh-cn')
 Vue.prototype.$moment = moment
 Vue.prototype.$http = axios

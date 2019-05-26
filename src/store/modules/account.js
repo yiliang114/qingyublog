@@ -20,22 +20,7 @@ const state = {
   // 跟显示的内容有关系
   repo: 'yiliang114/blog',  // 记录 Issue 的仓库的全名「用户名/仓库名」
   pageSize: 10,  // 博客列表每页显示多少条博客
-  showQQGroup: true,  // 如果要显示你自己的 QQ 群二维码图片的话这里配置成 true 并且替换「QYIssueBlog-Web/static/img/qq-group.png」为你自己的 QQ 群二维码图片，否则配置成 false 即可
-  thirdPartySite: [  // 配置你想在左上角展示的第三方站点信息
-    {
-      img: '/static/img/github.png',  // 第三方站点图标，存放在「QYIssueBlog-Web/static/img」目录中
-      url: 'https://github.com/yiliang114'  // 第三方站点的 url
-    },
-    {
-      img: '/static/img/weibo.png',
-      url: 'http://weibo.com/bingoogol'
-    },
-    {
-      img: '/static/img/git.png',
-      url: 'https://yiliang114.gitbooks.io/bgalearningnotes-git/content'
-    }
-    // 如果还有其他站点需要显示，继续在这里追加
-  ]
+
 }
 
 const mutations = {

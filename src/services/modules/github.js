@@ -15,7 +15,6 @@ export function getUserInfo() {
 }
 
 export function getIssues(data) {
-  // keyword, label, currentPage, pageSize
   let label = ''
   if (data.label && data.label.trim().length > 0) {
     label = `+label:"${data.label}"`

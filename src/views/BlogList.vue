@@ -27,7 +27,7 @@
         </span>
       </li>
     </ul>
-    <div v-if="isNoData"
+    <div v-else
       class="no-data">
       <div></div>
       <span>该分类下还没有文章哦</span>
@@ -37,79 +37,74 @@
         class="fl query"
         v-model="keyword"
         placeholder="按文章标题或内容搜索..."
-        @keyup.enter="searchIssues()" />
-      <pagination :totalNum="totalNum"
-        :currentPage="currentPage"
-        :pageSize="pageSize"
+        @keyup.enter="searchIssues" />
+      <pagination :totalNum="issuesCount"
+        :currentPage="issuesParams.currentPage"
+        :pageSize="issuesParams.pageSize"
         @currentPageChanged="handleCurrentPageChanged" />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions, mapMutations } from "vuex";
 import Pagination from "../components/Pagination.vue";
 
 export default {
   data() {
-    return {
-      keyword: "",
-      totalNum: 0,
-      currentPage: 1,
-      issues: [],
-      isNoData: false
-    };
+    return {};
   },
   components: {
     Pagination
   },
   computed: {
-    ...mapGetters(["activeLabel", "pageSize"])
-  },
-  methods: {
-    ...mapActions(["updateActiveLabel"]),
-    ...mapActions("github", ["getIssues"]),
-    setActiveLabel(label) {
-      this.updateActiveLabel(label);
+    ...mapGetters("github", [
+      "issues",
+      "issuesParams",
+      "issuesCount",
+      "activeLabel"
+    ]),
+    isNoData() {
+      return this.issues && this.issues.length === 0;
     },
-    searchIssues() {
-      this.currentPage = 1;
-      this.getIssues();
-    },
-    handleCurrentPageChanged(val) {
-      this.currentPage = val;
-      this.getIssues();
-    },
-    getIssues() {
-      this.isNoData = false;
-      this.$gitHubApi
-        .getIssues(this, {
-          label: this.activeLabel ? this.activeLabel.name : "",
-          keyword: this.keyword,
-          currentPage: this.currentPage,
-          pageSize: this.pageSize
-        })
-        .then(response => {
-          // 加载完数据后滚动到顶部
-          if (this.$refs.issueList) {
-            this.$refs.issueList.scrollTop = 0;
-          }
-          this.totalNum = response.data.total_count;
-          this.issues = response.data.items;
-          if (!this.issues || this.issues.length === 0) {
-            this.isNoData = true;
-          }
+    keyword: {
+      get: function() {
+        return this.issuesParams && this.issuesParams.keyword;
+      },
+      set: function(val) {
+        this.setIssuseParams({
+          keyword: val
         });
+      }
     }
   },
-  mounted() {
-    this.getIssues();
+  methods: {
+    ...mapActions("github", ["getIssues", "setIssuseParams", "setActiveLabel"]),
+    handleCurrentPageChanged(val) {
+      this.setIssuseParams({
+        currentPage: val
+      });
+    },
+    searchIssues() {
+      this.getIssues({
+        label: this.activeLabel ? this.activeLabel.name : "",
+        currentPage: 1
+      });
+    }
   },
+  async mounted() {
+    await this.getIssues({
+      label: this.activeLabel ? this.activeLabel.name : ""
+    });
+    this.$nextTick(() => {
+      if (this.$refs.issueList) {
+        this.$refs.issueList.scrollTop = 0;
+      }
+    });
+  },
+  // TODO:
   watch: {
     activeLabel(label) {
-      this.keyword = "";
-      this.totalNum = 0;
-      this.currentPage = 1;
       this.getIssues();
     }
   }

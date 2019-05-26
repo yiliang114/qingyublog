@@ -11,7 +11,7 @@
         <div v-if="gitHubUser">{{gitHubUser.bio}}</div>
       </div>
       <ul class="other-site">
-        <li v-for="site in thirdPartySite"
+        <li v-for="site in siteInfo.thirdPartySite"
           :key="site.url"
           @click="openThirdPartySite(site.url)">
           <img :src="site.img">
@@ -25,15 +25,15 @@
           tag="li"
           :to="{name: 'AboutMe'}">关于我</router-link>
       </ul>
-      <div v-if="showQQGroup"
+      <div v-if="!!siteInfo.showQQGroup"
         class="qq-group">
         <span>青羽 系列</span>
         <span>开源库 QQ 群</span>
         <img src="static/img/qq-group.png">
       </div>
-      <div class="copyright">© {{copyright}}</div>
-      <div v-if="recordNumber"
-        class="copyright">{{recordNumber}}</div>
+      <div class="copyright">© {{siteInfo.copyright}}</div>
+      <div v-if="!!siteInfo.recordNumber"
+        class="copyright">{{siteInfo.recordNumber}}</div>
       <div class="powered">
         主题 - <span @click="openThirdPartySite('https://github.com/yiliang114/QYIssueBlog')">QYIssueBlog</span>
       </div>
@@ -43,23 +43,14 @@
 
 <script>
 import { mapGetters } from "vuex";
+import { siteInfo } from "@/config";
 
 export default {
   computed: {
-    ...mapGetters("github", [
-      "gitHubUser"
-      // "showQQGroup"
-      // "copyright",
-      // "recordNumber",
-      // "thirdPartySite"
-    ]),
-    ...mapGetters([
-      "copyright",
-      "recordNumber",
-      // "gitHubUser",
-      "showQQGroup",
-      "thirdPartySite"
-    ]),
+    ...mapGetters("github", ["gitHubUser"]),
+    siteInfo() {
+      return siteInfo;
+    },
     isBlog() {
       return this.$route.name && this.$route.name.startsWith("Blog");
     },

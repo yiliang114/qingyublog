@@ -24,6 +24,7 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
+import { getAccessToken, addComment } from "@/services/modules/github";
 
 export default {
   props: {
@@ -70,7 +71,7 @@ export default {
         }${this.$queryStringify(query)}${window.location.hash}`;
         history.replaceState(null, null, replacedUrl);
 
-        this.$gitHubApi.getAccessToken(this, code).then(response => {
+        getAccessToken(code).then(response => {
           if (response.data && response.data.access_token) {
             this.setAccessToken(response.data.access_token);
           }
@@ -79,8 +80,7 @@ export default {
     },
     addComment() {
       this.isCommitting = true;
-      this.$gitHubApi
-        .addComment(this, this.commentsUrl, this.newComment.trim())
+      addComment(this.commentsUrl, this.newComment.trim())
         .then(response => {
           if (response.data && response.data) {
             this.$emit("addCommentSuccess", response.data);

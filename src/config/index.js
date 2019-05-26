@@ -9,3 +9,23 @@ export const auth = {
 }
 
 export const accessToken = localStorage.getItem('LS_KEY_ACCESS_TOKEN')
+
+export const siteInfo = {
+  copyright: '2018 - 2019',
+  recordNumber: '浙ICP备16046652号-2',
+  showQQGroup: true,
+  thirdPartySite: [
+    {
+      img: '/static/img/github.png',
+      url: 'https://github.com/yiliang114'
+    },
+    {
+      img: '/static/img/weibo.png',
+      url: 'http://weibo.com/u/3386520174'
+    },
+    {
+      img: '/static/img/git.png',
+      url: 'https://github.com/yiliang114/qingyublog'
+    }
+  ]
+}
