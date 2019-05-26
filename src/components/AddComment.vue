@@ -25,6 +25,7 @@
 <script>
 import { mapActions, mapGetters } from "vuex";
 import { getAccessToken, addComment } from "@/services/modules/github";
+import { queryParse, queryStringify } from "../utils";
 
 export default {
   props: {
@@ -62,13 +63,13 @@ export default {
       this.isWrite = false;
     },
     fetchAccessToken() {
-      const query = this.$queryParse();
+      const query = queryParse();
       if (query.code) {
         const code = query.code;
         delete query.code;
         const replacedUrl = `${window.location.origin}${
           window.location.pathname
-        }${this.$queryStringify(query)}${window.location.hash}`;
+        }${queryStringify(query)}${window.location.hash}`;
         history.replaceState(null, null, replacedUrl);
 
         getAccessToken(code).then(response => {

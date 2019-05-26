@@ -40,8 +40,7 @@ export default {
     return {
       issue: null,
       number: null,
-      comments: [],
-      newComment: null
+      comments: []
     };
   },
   components: {

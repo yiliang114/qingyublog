@@ -29,3 +29,25 @@ export const siteInfo = {
     }
   ]
 }
+
+// home config
+export const homeConfig = {
+  blogName: '青羽',
+  slogan: '你有你的计划，世界自有计划',
+  homeNav: [
+    {
+      name: 'Blog',
+      url: '/archives'
+    },
+    {
+      name: 'Project',
+      url: '/project/',
+      target_blank: true
+    },
+    {
+      name: 'Github',
+      url: 'https://github.com/yiliang114',
+      target_blank: true
+    }
+  ]
+}

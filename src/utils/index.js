@@ -1,10 +1,10 @@
-const gitHubApi = require('./gitHubApi')
+import { reponame, username } from '@/config'
 
-const isGetUserInfo = (vm, config) => {
-  return config && (config.url === `https://api.github.com/repos/${vm.$store.getters.repo}/labels` || config.url === `https://api.github.com/users/${vm.$store.getters.gitHubUsername}`)
+export const isGetUserInfo = (config) => {
+  return config && (config.url === `https://api.github.com/repos/${reponame}/labels` || config.url === `https://api.github.com/users/${username}`)
 }
 
-const queryParse = (search = window.location.search) => {
+export const queryParse = (search = window.location.search) => {
   if (!search) {
     return {}
   } else {
@@ -22,16 +22,9 @@ const queryParse = (search = window.location.search) => {
   }
 }
 
-const queryStringify = query => {
+export const queryStringify = query => {
   const queryString = Object.keys(query)
     .map(key => `${key}=${encodeURIComponent(query[key] || '')}`)
     .join('&')
   return queryString
-}
-
-export {
-  gitHubApi,
-  isGetUserInfo,
-  queryParse,
-  queryStringify
 }

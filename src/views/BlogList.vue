@@ -101,12 +101,6 @@ export default {
         this.$refs.issueList.scrollTop = 0;
       }
     });
-  },
-  // TODO:
-  watch: {
-    activeLabel(label) {
-      this.getIssues();
-    }
   }
 };
 </script>

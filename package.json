@@ -1,7 +1,7 @@
 {
-  "name": "bga-issue-blog",
+  "name": "qingyu",
   "version": "1.0.0",
-  "description": "QYIssueBlog",
+  "description": "青羽",
   "author": "1204183885@qq.com",
   "private": true,
   "scripts": {
@@ -17,7 +17,6 @@
     "element-ui": "^1.3.7",
     "github-markdown-css": "^2.8.0",
     "highlight.js": "^9.12.0",
-    "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "moment": "^2.18.1",
     "vue": "^2.3.4",

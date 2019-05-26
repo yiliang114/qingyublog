@@ -3,7 +3,6 @@ const Blog = () => import('@/views/Blog')
 const BlogList = () => import('@/views/BlogList')
 const BlogDetail = () => import('@/views/BlogDetail')
 
-
 export default [
   {
     name: 'AboutMe',
