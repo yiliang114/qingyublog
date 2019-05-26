@@ -20,10 +20,10 @@
       <ul class="left-menu">
         <router-link :class="isBlog ? 'selected-menu':''"
           tag="li"
-          :to="{name: 'BlogList'}">个人博客</router-link>
+          :to="{name: 'blogs'}">个人博客</router-link>
         <router-link :class="isAboutMe ? 'selected-menu':''"
           tag="li"
-          :to="{name: 'AboutMe'}">关于我</router-link>
+          :to="{name: 'me'}">关于我</router-link>
       </ul>
       <div v-if="!!siteInfo.showQQGroup"
         class="qq-group">
@@ -55,7 +55,7 @@ export default {
       return this.$route.name && this.$route.name.startsWith("Blog");
     },
     isAboutMe() {
-      return this.$route.name === "AboutMe";
+      return this.$route.name === "me";
     }
   },
   methods: {

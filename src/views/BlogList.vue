@@ -11,7 +11,7 @@
         v-for="issue in issues"
         :key="issue.id">
         <router-link tag="a"
-          :to="{name: 'BlogDetail', params: {number: issue.number, issue: issue}}">
+          :to="{name: 'blog', params: {number: issue.number, issue: issue}}">
           {{issue.title}}
         </router-link>
         <ul>

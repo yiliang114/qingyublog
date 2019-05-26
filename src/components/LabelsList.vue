@@ -30,7 +30,7 @@ export default {
     ...mapActions("github", ["setActiveLabel"]),
     setActiveLabelHandle(label) {
       console.log("this.$route.name", this.$route.name);
-      if (this.$route.name === "BlogDetail") {
+      if (this.$route.name === "blog") {
         this.setActiveLabel(label);
         this.$router.push("/");
       } else {

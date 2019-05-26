@@ -1,33 +1,33 @@
 const AboutMe = () => import('@/views/AboutMe')
 const Blog = () => import('@/views/Blog')
-const BlogList = () => import('@/views/BlogList')
+const blogs = () => import('@/views/BlogList')
 const BlogDetail = () => import('@/views/BlogDetail')
 
 export default [
   {
-    name: 'AboutMe',
-    path: '/AboutMe',
+    name: 'me',
+    path: '/me',
     component: AboutMe
   },
   // TODO: 路由设计有点问题。。。
   {
-    path: '/Blog',
+    path: '',
     component: Blog,
     children: [
       {
         path: '',
         redirect: {
-          name: 'BlogList'
+          name: 'blogs'
         }
       },
       {
-        path: 'BlogList',
-        name: 'BlogList',
-        component: BlogList
+        path: 'blogs',
+        name: 'blogs',
+        component: blogs
       },
       {
-        path: 'BlogDetail/:number',
-        name: 'BlogDetail',
+        path: 'blog/:number',
+        name: 'blog',
         component: BlogDetail
       }
     ]
