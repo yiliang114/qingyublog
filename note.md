@@ -1,0 +1,1 @@
+router 的 base 属性是指在路由中添加一个前缀，而对于 index.html 具体引用的 js css 文件的路径，是需要通过 assetsPublicPath 属性来手动加上前缀的。
