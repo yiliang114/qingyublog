@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run build",
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
