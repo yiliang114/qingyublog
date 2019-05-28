@@ -8,19 +8,21 @@ branchs:
 notifications:
   email:
     recipients:
-    - 18158501703@163.com
+      - 18158501703@163.com
     on_success: always
     on_failure: always
 cache:
   directories:
-  - node_modules
-install:
-- cnpm i
-scripts:
-- cnpm run build
+    - node_modules
 before_install:
-- openssl aes-256-cbc -K $encrypted_51cb93dbcf43_key -iv $encrypted_51cb93dbcf43_iv
-  -in id_rsa.enc -out ~\.ssh/id_rsa -d
-  - chmod 600 ~/.ssh/id_rsa
+  - openssl aes-256-cbc -K $encrypted_51cb93dbcf43_key -iv $encrypted_51cb93dbcf43_iv
+    -in id_rsa.enc -out ~\.ssh/id_rsa -d
+    - chmod 600 ~/.ssh/id_rsa
+install:
+  - cnpm i
+scripts:
+  - cnpm run build
 after_success:
-- scp -r ./dist root@119.23.63.192:/usr/local/workspace/front-end/qingyu
+  - scp -r dist/* root@119.23.63.192:/usr/local/workspace/front-end/qingyu
+addons:
+  ssh_known_hosts: 119.23.63.192
