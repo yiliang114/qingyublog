@@ -19,9 +19,9 @@ before_install:
     -in id_rsa.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
 install:
-  - cnpm i
+  - npm i
 scripts:
-  - cnpm run build
+  - npm run build
 after_success:
   - scp -r dist/* root@$ip:/usr/local/workspace/front-end/qingyu
 addons:
