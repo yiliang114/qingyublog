@@ -23,6 +23,6 @@ install:
 scripts:
   - npm run build
 after_success:
-  - scp -r dist/* root@$ip:/usr/local/workspace/front-end/qingyu
+  - scp -o StrictHostKeyChecking=no -r dist/* root@$ip:/usr/local/workspace/front-end/qingyu
 addons:
   ssh_known_hosts: $ip
