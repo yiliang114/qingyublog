@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+- 10
+branchs:
+  only:
+  - master
+  - dev
+notifications:
+  email:
+    recipients:
+    - 18158501703@163.com
+    on_success: always
+    on_failure: always
+cache:
+  directories:
+  - node_modules
+install:
+- cnpm i
+scripts:
+- cnpm run build
+before_install:
+- openssl aes-256-cbc -K $encrypted_51cb93dbcf43_key -iv $encrypted_51cb93dbcf43_iv
+  -in id_rsa.enc -out ~\.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
+after_success:
+- scp -r ./dist root@119.23.63.192:/usr/local/workspace/front-end/qingyu
