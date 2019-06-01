@@ -97,15 +97,19 @@ var webpackConfig = merge(baseWebpackConfig, {
 if (config.build.productionGzip) {
   var CompressionWebpackPlugin = require('compression-webpack-plugin')
 
+  // compression-webpack-plugin@2.0 以上的版本需要 Node v6.9.0 and Webpack v4.0.0 
+  // 所以如果 webpack 或者 node 版本较低最好是降低成为 1.1.12(这是 1.x 的最高版本)
   webpackConfig.plugins.push(
     new CompressionWebpackPlugin({
-      asset: '[path].gz[query]',
+      // 如果 webpack 版本较低，asset 需要修改为 filename
+      filename: '[path].gz[query]',
       algorithm: 'gzip',
       test: new RegExp(
         '\\.(' +
         config.build.productionGzipExtensions.join('|') +
         ')$'
       ),
+      // 资源文件大于 10kb 时会被压缩
       threshold: 10240,
       minRatio: 0.8
     })
