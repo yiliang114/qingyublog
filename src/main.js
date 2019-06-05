@@ -42,10 +42,8 @@ marked.setOptions({
 Vue.prototype.$marked = marked
 
 /* eslint-disable no-new */
-const vm = new Vue({
-  el: '#app',
+new Vue({
   router,
   store,
-  template: '<App/>',
-  components: { App }
-})
+  render: h => h(App)
+}).$mount("#app")

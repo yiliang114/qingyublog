@@ -18,15 +18,15 @@ export const siteInfo = {
   showQQGroup: true,
   thirdPartySite: [
     {
-      img: prefix + '/static/img/github.png',
+      img: prefix + '/img/github.png',
       url: 'https://github.com/yiliang114'
     },
     {
-      img: prefix + '/static/img/weibo.png',
+      img: prefix + '/img/weibo.png',
       url: 'http://weibo.com/u/3386520174'
     },
     {
-      img: prefix + '/static/img/git.png',
+      img: prefix + '/img/git.png',
       url: 'https://github.com/yiliang114/qingyublog'
     }
   ]
