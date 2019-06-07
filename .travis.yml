@@ -11,9 +11,9 @@ notifications:
       - effortyiliang@gmail.com
     on_success: always
     on_failure: always
-# cache:
-#   directories:
-#     - node_modules
+cache:
+  directories:
+    - node_modules
 before_install:
   - openssl aes-256-cbc -K $encrypted_51cb93dbcf43_key -iv $encrypted_51cb93dbcf43_iv
     -in id_rsa.enc -out ~/.ssh/id_rsa -d
