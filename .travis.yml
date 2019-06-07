@@ -8,7 +8,7 @@ branchs:
 notifications:
   email:
     recipients:
-      - 18158501703@163.com
+      - effortyiliang@gmail.com
     on_success: always
     on_failure: always
 # cache:

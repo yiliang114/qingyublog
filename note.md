@@ -7,3 +7,7 @@ router 的 base 属性是指在路由中添加一个前缀，而对于 index.htm
 2. 开启 gzip 
 3. 如何在开发环境使用 npm 包，而在线上环境使用 cdn (例如 vue vue-router 这些)
 https://www.jianshu.com/p/86602494dbb7
+
+
+### TODO
+1. github 的接口会有频率限制，很僵硬。。。最好弄成访问自己的后台服务
