@@ -28,8 +28,8 @@
       <div v-if="!!siteInfo.showQQGroup"
         class="qq-group">
         <span>青羽 系列</span>
-        <span>开源库 QQ 群</span>
-        <img src="/img/qq-group.png">
+        <!-- <span>开源库 QQ 群</span>
+        <img src="/img/qq-group.png"> -->
       </div>
       <div class="copyright">© {{siteInfo.copyright}}</div>
       <div v-if="!!siteInfo.recordNumber"

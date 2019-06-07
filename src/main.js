@@ -3,14 +3,6 @@ import {
   Loading,
   Message
 } from 'element-ui'
-
-Vue.use(Loading)
-Vue.component(Message.name, Message)
-Vue.prototype.$message = Message
-
-import BgaBackTop from 'bga-back-top-vue'
-Vue.use(BgaBackTop)
-
 import moment from 'moment'
 import marked from 'marked'
 import highlight from 'highlight.js'
@@ -20,7 +12,11 @@ import 'github-markdown-css/github-markdown.css'
 import App from './App'
 import store from './store'
 import router from './router'
-import './css/main.css'
+import '@/assets/css/main.css'
+
+Vue.use(Loading)
+Vue.component(Message.name, Message)
+Vue.prototype.$message = Message
 
 moment.locale('zh-cn')
 Vue.prototype.$moment = moment

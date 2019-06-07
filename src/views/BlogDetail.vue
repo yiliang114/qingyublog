@@ -17,7 +17,7 @@
           class="back-icon">返回
       </span>
     </div>
-    <div class="comment-container bga-back-top"
+    <div class="comment-container"
       ref="commentContainer">
       <comment :comment="issue" />
       <comment v-for="comment in comments"
